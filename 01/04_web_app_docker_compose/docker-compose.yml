@@ -1,0 +1,38 @@
+version: '3.4'
+
+services:
+
+  postgres:
+
+    image: 'postgres:10-alpine'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  nginx:
+
+    build:
+      context: '.'
+      dockerfile: ./docks/nginx/dockerfile
+
+    ports:
+      - "8888:8888"
+
+    depends_on:
+      - app
+
+  app:
+
+    build:
+      context: '.'
+      dockerfile: ./docks/app/dockerfile
+
+    depends_on:
+      - postgres
+
+    env_file:
+      - .env
+
+volumes:
+  pg_data:

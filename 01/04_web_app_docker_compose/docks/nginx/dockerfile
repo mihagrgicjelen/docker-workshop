@@ -1,0 +1,8 @@
+FROM 04_web_app_docker_compose_app as app_img
+RUN python /app/manage.py collectstatic --no-input  # will collect "prod ready" static files
+
+
+FROM nginx:1.17.3
+COPY ./docks/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=app_img /static_root /static
+

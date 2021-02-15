@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+
+  postgres:
+    ports:
+      # For DEV connections direclty to the database
+      # (maybe using some postgres client app)
+      - '5432:5432'
+
+  app:
+
+    command: 'python manage.py runserver 0.0.0.0:8888'
+
+    environment:
+      - DEBUG=1
+
+    ports:
+      - '8000:8000'
+
+    volumes:
+      - ./app:/app
