@@ -98,7 +98,29 @@ nginx:1.17.3-alpine			21.2MB
 nginx:1.17.3				126MB
 ```
 
-###Use .dockerignore 
+### Reduce image layers
+
+Produces 3 layers on top of base image:   
+
+```
+FROM ubuntu:21.04
+RUN apt-get update && apt-get install -y libcairo2  # <-- layer 1
+RUN apt-get update && apt-get install -y libpango   # <-- layer 2
+RUN apt-get update && apt-get install -y gettext    # <-- layer 3
+```
+
+Produces 1 layer on top of base image:
+
+```
+FROM ubuntu:21.04
+RUN apt-get update && apt-get install -y \
+	libcairo2\
+	libpango\
+	gettext    # <-- layer 1
+```
+
+
+### Use .dockerignore 
 
 * [Nekaj razlage o .dockerignore](https://codefresh.io/docker-tutorial/not-ignore-.dockerignore -2/)
 * [.dockerignore  syntax & docs](https://docs.docker.com/engine/reference/builder/### -file)
