@@ -6,14 +6,15 @@ services:
     ports:
       # For DEV connections direclty to the database
       # (maybe using some postgres client app)
+      # But on PROD, that is a security problem...
       - '5432:5432'
 
   app:
 
     command: 'python manage.py runserver 0.0.0.0:8888'
 
-    environment:
-      - DEBUG=1
+    environment: 
+      - DEBUG=1  # Used by django's settings.py
 
     ports:
       - '8000:8000'
