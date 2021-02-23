@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+
+  nginx:
+    build:
+      context: '.'
+      dockerfile: ./nginx.Dockerfile
+    ports:
+      - "8888:8888"
+    depends_on:
+      - app
+
+  app:
+    build:
+      context: '.'
+      dockerfile: ./app.Dockerfile
+
+  redis:
+    image: bitnami/redis:5.0.8
+    environment:
+      - REDIS_PASSWORD=empire_is_dark
+
+
+  postgres:
+    image: 'postgres:10-alpine'
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+

@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+
+    app:
+
+      image: app:v12
+
+      build:
+        context: '.'
+        dockerfile: ./app.dockerfile
+
+      ports:
+        - '8000:8000'
+
+      environment:
+        - TASK_SLOT={{.Task.Slot}}
+        - TASK_NAME={{.Task.Name}}
+        - SERVICE_NAME={{.Service.Name}}
+        - NODE_ID={{.Node.ID}}
+
+      deploy:
+        mode: replicated
+        replicas: 2
+        restart_policy:
+          condition: on-failure
+          delay: 5s
+          max_attempts: 2
+
+      healthcheck:
+        test: curl http://localhost:8000
+        interval: 5s
+        timeout: 2s
+        retries: 1
+        start_period: 1s
