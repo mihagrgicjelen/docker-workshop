@@ -20,7 +20,7 @@ services:
         - NODE_ID={{.Node.ID}}
 
       deploy:
-        mode: replicated
+
         replicas: 2
 
         placement:
