@@ -9,7 +9,8 @@ SECRET_AGENS = [
 ]
 
 app = Flask(__name__)
-cache = redis.Redis(host='redis', port=6379, password='empire_is_dark')
+
+cache = redis.Redis(host='redis', port=6379)
 
 
 @app.route('/')
