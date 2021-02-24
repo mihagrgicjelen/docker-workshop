@@ -23,13 +23,12 @@ services:
 
         replicas: 2
 
-        placement:
-          constraints:
-            - "node.role==manager"
-            - "engine.labels.operatingsystem==ubuntu 18.04"
-            - "node.labels.region==EU"
-          # preferences:
-          #   - spread: node.labels.zone
+        # Uncomment, if needed/wanded
+        # placement:
+        #   constraints:
+        #     - "node.role==manager"
+        #     - "engine.labels.operatingsystem==ubuntu 18.04"
+        #     - "node.labels.region==EU"
 
         resources:
           limits:
@@ -43,7 +42,6 @@ services:
           condition: on-failure
           delay: 5s
           max_attempts: 2
-
 
       healthcheck:
         test: curl http://localhost:8000

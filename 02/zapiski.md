@@ -1,4 +1,6 @@
+
 # 02
+
 - snemat!!!
 - quick sum up, dockerfiles, docker build, docker run, docker-compose, volume mounts, exposing ports
 - docker system prune
@@ -6,7 +8,7 @@
 - flask docker-compose
 - split to DEV
 - docker stats
-- 	test dockprom to monitor it
+- test dockprom to monitor it
 - security overview exposed ports
 	- nginx basic auth bypass then 8000 exposed
 	- redis highjack publicly available to the internet
