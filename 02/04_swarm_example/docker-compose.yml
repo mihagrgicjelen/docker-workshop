@@ -23,6 +23,14 @@ services:
         mode: replicated
         replicas: 2
 
+        placement:
+          constraints:
+            - "node.role==manager"
+            - "engine.labels.operatingsystem==ubuntu 18.04"
+            - "node.labels.region==EU"
+          # preferences:
+          #   - spread: node.labels.zone
+
         resources:
           limits:
             cpus: '0.50'

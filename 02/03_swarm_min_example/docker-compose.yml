@@ -1,0 +1,14 @@
+version: '3.4'
+
+services:
+
+    app:
+
+      image: app-1:v1
+
+      build:
+        context: '.'
+        dockerfile: ./app.dockerfile
+
+      ports:
+        - '8000:8000'
