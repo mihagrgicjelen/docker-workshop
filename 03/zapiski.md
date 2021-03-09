@@ -57,4 +57,67 @@ Some pipelines also include automatic deployment (which is sometimes called Cont
 - expect postgress first fail
 
 
+# Secrets management
 
+- [https://www.envkey.com/](https://www.envkey.com/)  
+- [https://github.com/envkey/envkey-source](https://github.com/envkey/envkey-source)
+- `envkey-source $ENVKEY_MASTERKEY --dot-env-compatible | sed "s/'//g" > .env`
+
+# Logging
+
+Local:
+
+```
+docker logs <container_id>
+docker-compose logs <optional_container_id>
+docker service logs <service_name> (from all nodes!)
+```
+
+JSON file with rotation:
+
+```
+logging:
+  driver: json-file
+  options:
+    max-size: "10m",
+    max-file: "3" 
+  }
+}
+```
+
+AWS logging:
+
+```
+logging:
+  driver: awslogs
+  options:
+    awslogs-region: "eu-central-1"
+    awslogs-stream: 'app'
+```
+Graylog
+
+```
+logging:
+  driver: gelf
+  options:
+    gelf-address=udp://<some_host:12201
+```
+
+
+Applies to all docker concepts (not only swarm or docker-compose):
+
+```
+docker run -dit \
+    --log-driver=gelf \
+    --log-opt gelf-address=udp://<some_host:12201 \
+    alpine sh
+```
+
+# GPU suppport
+
+The NVIDIA Container Toolkit allows users to **build and run GPU accelerated Docker containers**. The toolkit **includes a container runtime library** and utilities to automatically configure containers to leverage NVIDIA GPUs.
+
+- [https://github.com/NVIDIA/nvidia-docker](https://github.com/NVIDIA/nvidia-docker)
+
+
+![https://cloud.githubusercontent.com/assets/3028125/12213714/5b208976-b632-11e5-8406-38d379ec46aa.png](https://cloud.githubusercontent.com/assets/3028125/12213714/5b208976-b632-11e5-8406-38d379ec46aa.png)
