@@ -28,6 +28,16 @@ Sum up:
 
 
 ## Performance
+- Docker is nearly identical to native performance and faster than KVM in every category
+- The exception to this is Docker’s NAT (port mapping!)
+
+**Docker isn't virtualization**, as such -- instead, **it's an abstraction on top of the kernel's** support for different process namespaces, device namespaces, etc.; one namespace isn't inherently more expensive or inefficient than another, so what actually makes Docker have a **performance impact is a matter of what's actually in those namespaces**.
+
+![https://i.stack.imgur.com/4yRh1m.png](https://i.stack.imgur.com/4yRh1m.png)
+
+![https://i.stack.imgur.com/2Ftytm.png](https://i.stack.imgur.com/2Ftytm.png)
+
+![https://i.stack.imgur.com/wZZH6m.png](https://i.stack.imgur.com/wZZH6m.png)
 
 https://stackoverflow.com/questions/21889053/what-is-the-runtime-performance-cost-of-a-docker-container
 
