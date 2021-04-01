@@ -1,0 +1,28 @@
+stages:
+  - build
+  - test 
+  - deploy
+
+
+BuildMyApp:
+  stage: build
+  tags:
+    - build-server
+  script:
+    - docker-compose build
+    - docker-compose push (to container registry)
+
+TestMyApp:
+  stage: test
+  tags:
+    - build-server
+  script:
+    - docker-compose run app python manage.py test
+
+Deploy:
+  stage: deploy
+  tags:
+    - PROD-server
+  script:
+    - echo $MY_SECRET
+    - docker-compose up -d
