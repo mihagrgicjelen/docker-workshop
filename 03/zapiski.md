@@ -55,17 +55,7 @@ Once you have CI and CD in place, the **deployable unit path is called a pipelin
 A pipeline procedure **is triggered when code is committed** to a repository hosted somewhere like GitHub. Next comes notification to a **build system**. The build system compiles the code and **runs unit tests**.
 Some pipelines also include automatic deployment (which is sometimes called Continuous Deployment) to a test/prod environment.
 
-
-- Start a Gitlab Repository
-- Copy from 01 - django app
-- push to repo
-- SSH to prepared server
-- install gitlab runner
-- rm .bash_logout
-- add gitlabrunner to docker group
-- install git
-- expect postgress first fail
-
+See examples...
 
 # Secrets management
 
